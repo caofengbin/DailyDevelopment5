@@ -8,6 +8,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import cfb.com.dailydevelopment5.example1.radar.RadarViewActivity;
+
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private String[] mainItems;
@@ -33,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
         switch (position) {
             case 0:
-
+                startIntent(RadarViewActivity.class);
                 break;
             case 1:
 
