@@ -8,94 +8,61 @@ import java.util.List;
  * Created by fengbincao on 2017/7/30.
  */
 
-public class RadarData {
-    private String mLabel;
-    private List<Float> mValue;
-    private int mColor;
-    private List<String> mValueText;
-    private int mValueTextColor;
-    private int mValueTextSize;
-    private boolean mValueTextEnable;
+class RadarData {
 
-    public RadarData(List<Float> value) {
-        this("data", value, new RandomColor().randomColor());
+    private int mRadarValueColor;                           // 绘制雷达数据区域的边框的颜色
+
+    private int mValueTextSize;                             // 雷达数据区域文字值的字体大小
+    private int mValueTextColor;                            // 雷达数据区域文字值的字体颜色
+    private boolean mValueTextEnable;                       // 雷达数据区域部分是否绘制具体的值信息
+
+    private List<Float> mRadarValue;                        // 雷达图数据结构
+    private List<String> mValueText;                        // 雷达图数据区域文字
+
+    List<String> getValueText() {
+        return mValueText;
     }
 
-    public RadarData(List<Float> value, String label) {
-        this(label, value, new RandomColor().randomColor());
+    private void initValueText() {
+        mValueText = new ArrayList<>();
+        for (int i = 0; i < mRadarValue.size(); i++) {
+            mValueText.add(mRadarValue.get(i).toString());
+        }
     }
 
-    public RadarData(String label, List<Float> value, int color) {
-        this.mLabel = label;
-        this.mValue = value;
-        this.mColor = color;
+    /**
+     * 构造方法
+     *
+     * @param value 雷达图值数据部分
+     * @param color 雷达图值部分的color
+     */
+    RadarData(List<Float> value, int color) {
+        this.mRadarValue = value;
+        this.mRadarValueColor = color;
         initValueText();
+
         mValueTextColor = 0xFF9E9E9E;
         mValueTextSize = 10;
         mValueTextEnable = false;
     }
 
-    public List<Float> getValue() {
-        return mValue;
+    List<Float> getRadarValue() {
+        return mRadarValue;
     }
 
-    public void setValue(List<Float> value) {
-        this.mValue = value;
-        initValueText();
+    int getRadarValueLineColor() {
+        return mRadarValueColor;
     }
 
-    public String getLabel() {
-        return mLabel;
-    }
-
-    public void setLabel(String mLabel) {
-        this.mLabel = mLabel;
-    }
-
-    public int getColor() {
-        return mColor;
-    }
-
-    public void setColor(int mColor) {
-        this.mColor = mColor;
-    }
-
-    public int getValueTextColor() {
+    int getValueTextColor() {
         return mValueTextColor;
     }
 
-    public void setVauleTextColor(int mValueTextColor) {
-        this.mValueTextColor = mValueTextColor;
-    }
-
-    public int getValueTextSize() {
+    int getValueTextSize() {
         return mValueTextSize;
     }
 
-    public void setValueTextSize(int mValueTextSize) {
-        this.mValueTextSize = mValueTextSize;
-    }
-
-    public boolean isValueTextEnable() {
+    boolean isValueTextEnable() {
         return mValueTextEnable;
-    }
-
-    public void setValueTextEnable(boolean mValueTextEnable) {
-        this.mValueTextEnable = mValueTextEnable;
-    }
-
-    public List<String> getValueText() {
-        return mValueText;
-    }
-
-    public void setValueText(List<String> mValueText) {
-        this.mValueText = mValueText;
-    }
-
-    private void initValueText() {
-        mValueText = new ArrayList<>();
-        for (int i = 0; i < mValue.size(); i++) {
-            mValueText.add(mValue.get(i).toString());
-        }
     }
 }

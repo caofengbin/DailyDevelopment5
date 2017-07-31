@@ -48,7 +48,7 @@ public class AnimateUtil {
 
     private void startZoomAnime(final int duration, final RadarData data) {
         final ValueAnimator anime = ValueAnimator.ofFloat(0, 1f);
-        final List<Float> values = data.getValue();
+        final List<Float> values = data.getRadarValue();
         final List<Float> values2 = new ArrayList<>(values);
         anime.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
