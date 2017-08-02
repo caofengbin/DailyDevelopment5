@@ -47,10 +47,10 @@ public class ParentLayout extends LinearLayout {
     public boolean onInterceptTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                Log.d(TAG, "[onInterceptTouchEvent] -> ACTION_DOWN");
-                break;
-//                Log.i(TAG, "[onInterceptTouchEvent] -> ACTION_DOWN, return true");
-//                return true;
+//                Log.d(TAG, "[onInterceptTouchEvent] -> ACTION_DOWN");
+//                break;
+                Log.i(TAG, "[onInterceptTouchEvent] -> ACTION_DOWN, return true");
+                return true;
             case MotionEvent.ACTION_MOVE:
                 Log.d(TAG, "[onInterceptTouchEvent] -> ACTION_MOVE");
                 break;
@@ -75,6 +75,7 @@ public class ParentLayout extends LinearLayout {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 Log.d(TAG, "[onTouchEvent] -> ACTION_DOWN");
+                //return true;
                 break;
             case MotionEvent.ACTION_MOVE:
                 Log.d(TAG, "[onTouchEvent] -> ACTION_MOVE");
