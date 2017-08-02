@@ -18,6 +18,8 @@
         </activity>
         <activity android:name=".example1.radar.RadarViewActivity">
         </activity>
+        <activity android:name=".example2.touch.TouchActivity">
+        </activity>
     </application>
 
 </manifest>

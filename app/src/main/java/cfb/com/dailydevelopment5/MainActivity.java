@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import cfb.com.dailydevelopment5.example1.radar.RadarViewActivity;
+import cfb.com.dailydevelopment5.example2.touch.TouchActivity;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 startIntent(RadarViewActivity.class);
                 break;
             case 1:
-
+                startIntent(TouchActivity.class);
                 break;
             case 2:
 
