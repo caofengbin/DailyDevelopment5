@@ -28,6 +28,10 @@
             android:exported="false"
             android:screenOrientation="portrait">
         </activity>
+        <activity android:name=".example3.fragment.UseListFragmentActivity">
+        </activity>
+        <activity android:name=".example4.dialog.DialogFragmentActivity">
+        </activity>
     </application>
 
 </manifest>

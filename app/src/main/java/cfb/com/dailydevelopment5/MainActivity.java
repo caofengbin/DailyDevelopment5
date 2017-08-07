@@ -10,6 +10,8 @@ import android.widget.ListView;
 
 import cfb.com.dailydevelopment5.example1.radar.RadarViewActivity;
 import cfb.com.dailydevelopment5.example2.touch.TouchActivity;
+import cfb.com.dailydevelopment5.example3.fragment.UseListFragmentActivity;
+import cfb.com.dailydevelopment5.example4.dialog.DialogFragmentActivity;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
@@ -42,10 +44,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 startIntent(TouchActivity.class);
                 break;
             case 2:
-
+                startIntent(UseListFragmentActivity.class);
                 break;
             case 3:
-
+                startIntent(DialogFragmentActivity.class);
                 break;
             case 4:
 

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <!--
+          List of Book Titles
+      -->
+    <fragment
+        android:id="@+id/fragmentTitles"
+        android:name="cfb.com.dailydevelopment5.example3.fragment.BookListFragment2"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        tools:layout="@layout/fragment_book_list"/>
+
+
+    <!--Description of selected book -->
+    <fragment
+        android:id="@+id/fragmentDescription"
+        android:name="cfb.com.dailydevelopment5.example3.fragment.BookDescFragment"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        tools:layout="@layout/fragment_book_desc"/>
+</LinearLayout>
