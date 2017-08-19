@@ -12,6 +12,7 @@ import cfb.com.dailydevelopment5.example1.radar.RadarViewActivity;
 import cfb.com.dailydevelopment5.example2.touch.TouchActivity;
 import cfb.com.dailydevelopment5.example3.fragment.UseListFragmentActivity;
 import cfb.com.dailydevelopment5.example4.dialog.DialogFragmentActivity;
+import cfb.com.dailydevelopment5.example5.drawtext.DrawTextActivity;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 startIntent(DialogFragmentActivity.class);
                 break;
             case 4:
-
+                startIntent(DrawTextActivity.class);
                 break;
             case 5:
 

@@ -32,6 +32,8 @@
         </activity>
         <activity android:name=".example4.dialog.DialogFragmentActivity">
         </activity>
+        <activity android:name=".example5.drawtext.DrawTextActivity">
+        </activity>
     </application>
 
 </manifest>
