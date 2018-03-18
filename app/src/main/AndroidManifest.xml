@@ -34,6 +34,10 @@
         </activity>
         <activity android:name=".example5.drawtext.DrawTextActivity">
         </activity>
+        <activity android:name=".example7.layout.LayoutParamActivity">
+        </activity>
+        <activity android:name=".example6.mvp.LoginActivity">
+        </activity>
     </application>
 
 </manifest>

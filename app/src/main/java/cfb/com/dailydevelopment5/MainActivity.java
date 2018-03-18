@@ -13,13 +13,14 @@ import cfb.com.dailydevelopment5.example2.touch.TouchActivity;
 import cfb.com.dailydevelopment5.example3.fragment.UseListFragmentActivity;
 import cfb.com.dailydevelopment5.example4.dialog.DialogFragmentActivity;
 import cfb.com.dailydevelopment5.example5.drawtext.DrawTextActivity;
+import cfb.com.dailydevelopment5.example6.mvp.LoginActivity;
+import cfb.com.dailydevelopment5.example7.layout.LayoutParamActivity;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private String[] mainItems;
     private ListView mMainListView;
     private ArrayAdapter<String> itemAdapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,34 +40,38 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
         switch (position) {
             case 0:
+                // 雷达图绘制的效果
                 startIntent(RadarViewActivity.class);
                 break;
             case 1:
+                // touch事件分发机制详解
                 startIntent(TouchActivity.class);
                 break;
             case 2:
+                // 使用ListFragment
                 startIntent(UseListFragmentActivity.class);
                 break;
             case 3:
+                // 使用DialogFragment
                 startIntent(DialogFragmentActivity.class);
                 break;
             case 4:
+                // 尝试使用DrawText方法
                 startIntent(DrawTextActivity.class);
                 break;
             case 5:
-
+                // LayoutParam参数的各种使用方式
+                startIntent(LayoutParamActivity.class);
                 break;
             case 6:
-
+                // MVP模式简单示例
+                startIntent(LoginActivity.class);
                 break;
             case 7:
-
                 break;
             case 8:
-
                 break;
             case 9:
-
                 break;
             case 10:
 
