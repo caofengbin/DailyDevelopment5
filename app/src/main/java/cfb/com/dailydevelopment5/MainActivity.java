@@ -15,6 +15,7 @@ import cfb.com.dailydevelopment5.example4.dialog.DialogFragmentActivity;
 import cfb.com.dailydevelopment5.example5.drawtext.DrawTextActivity;
 import cfb.com.dailydevelopment5.example6.mvp.LoginActivity;
 import cfb.com.dailydevelopment5.example7.layout.LayoutParamActivity;
+import cfb.com.dailydevelopment5.example8.drag.DragListViewActivity;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
@@ -68,6 +69,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 startIntent(LoginActivity.class);
                 break;
             case 7:
+                // 拖拽滑动ListView简单实现
+                startIntent(DragListViewActivity.class);
                 break;
             case 8:
                 break;

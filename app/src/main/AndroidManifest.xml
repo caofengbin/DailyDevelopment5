@@ -38,6 +38,8 @@
         </activity>
         <activity android:name=".example6.mvp.LoginActivity">
         </activity>
+        <activity android:name=".example8.drag.DragListViewActivity">
+        </activity>
     </application>
 
 </manifest>
