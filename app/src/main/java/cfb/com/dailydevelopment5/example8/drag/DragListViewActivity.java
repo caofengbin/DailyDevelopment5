@@ -29,7 +29,7 @@ public class DragListViewActivity extends AppCompatActivity
         setContentView(R.layout.activity_drag_list_view);
         mRecyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         mList = new ArrayList<>();
-        GridLayoutManager manager = new GridLayoutManager(this, 4);
+        GridLayoutManager manager = new GridLayoutManager(this, 3);
         manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
@@ -43,14 +43,14 @@ public class DragListViewActivity extends AppCompatActivity
         mRecyclerView.setItemAnimator(animator);
         ChannelBean title = new ChannelBean();
         title.setLayoutId(R.layout.adapter_title);
-        title.setSpanSize(4);
+        title.setSpanSize(3);
         mList.add(title);
         for (String bean : select) {
             mList.add(new ChannelBean(bean, 1, R.layout.adapter_channel, true));
         }
         ChannelBean tabBean = new ChannelBean();
         tabBean.setLayoutId(R.layout.adapter_tab);
-        tabBean.setSpanSize(4);
+        tabBean.setSpanSize(3);
         mList.add(tabBean);
         List<ChannelBean> recommendList = new ArrayList<>();
         for (String bean : recommend) {
@@ -62,18 +62,19 @@ public class DragListViewActivity extends AppCompatActivity
         }
         ChannelBean moreBean = new ChannelBean();
         moreBean.setLayoutId(R.layout.adapter_more_channel);
-        moreBean.setSpanSize(4);
+        moreBean.setSpanSize(3);
         cityList.add(moreBean);
         mList.addAll(recommendList);
         mAdapter = new ChannelAdapter(this, mList, recommendList, cityList);
-        mAdapter.setFixSize(1);
+        mAdapter.setFixSize(select.length);
+
         mAdapter.setSelectedSize(select.length);
         mAdapter.setRecommend(true);
         mAdapter.setOnItemRangeChangeListener(this);
         mRecyclerView.setAdapter(mAdapter);
         WindowManager m = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
         int spacing = (m.getDefaultDisplay().getWidth() - dip2px(this, 70) * 4) / 5;
-        mRecyclerView.addItemDecoration(new GridSpacingItemDecoration(4,spacing,true));
+        mRecyclerView.addItemDecoration(new GridSpacingItemDecoration(3,spacing,true));
         ItemDragCallback callback=new ItemDragCallback(mAdapter,2);
         ItemTouchHelper helper=new ItemTouchHelper(callback);
         helper.attachToRecyclerView(mRecyclerView);

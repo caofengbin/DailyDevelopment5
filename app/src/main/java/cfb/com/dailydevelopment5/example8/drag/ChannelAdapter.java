@@ -110,8 +110,9 @@ public class ChannelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 } else {
                     //tab下面的 点击添加到已选频道
                     selectedSize++;
-                    itemMove(holder.getLayoutPosition(), selectedSize);
-                    notifyItemChanged(selectedSize);
+                    setFixSize(selectedSize);
+                    itemMove(holder.getLayoutPosition(), selectedSize-1);
+                    notifyItemChanged(selectedSize-1);
                     if (onItemRangeChangeListener != null) {
                         onItemRangeChangeListener.refreshItemDecoration();
                     }
@@ -133,7 +134,7 @@ public class ChannelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         });
 
         //tab下面的不显示删除按钮
-        if (position - 1 < fixSize || position > selectedSize) {
+        if (position == fixSize || position > selectedSize) {
             holder.delete.setVisibility(View.GONE);
         } else {
             holder.delete.setVisibility(View.VISIBLE);
@@ -228,6 +229,7 @@ public class ChannelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             removeAnimation(holder.itemView, isRecommend ? mRight : mLeft, mTabY, position);
         }
         selectedSize--;
+        setFixSize(selectedSize);
     }
 
     private void removeAnimation(final View view, final float x, final float y, final int position) {

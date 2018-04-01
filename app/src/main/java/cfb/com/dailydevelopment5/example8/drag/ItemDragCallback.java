@@ -39,7 +39,8 @@ class ItemDragCallback extends ItemTouchHelper.Callback {
     @Override
     public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
         //固定位置及tab下面的channel不能拖动
-        if (viewHolder.getLayoutPosition() < mAdapter.getFixSize() + 1 || viewHolder.getLayoutPosition() > mAdapter.getSelectedSize()) {
+        if (viewHolder.getLayoutPosition() == mAdapter.getFixSize()
+                || viewHolder.getLayoutPosition() > mAdapter.getSelectedSize()) {
             return 0;
         }
         int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN | ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT;
@@ -52,7 +53,7 @@ class ItemDragCallback extends ItemTouchHelper.Callback {
         int fromPosition = viewHolder.getAdapterPosition();   //拖动的position
         int toPosition = target.getAdapterPosition();     //释放的position
         //固定位置及tab下面的channel不能拖动
-        if (toPosition < mAdapter.getFixSize() + 1 || toPosition > mAdapter.getSelectedSize())
+        if (toPosition == mAdapter.getFixSize()  || toPosition > mAdapter.getSelectedSize())
             return false;
         mAdapter.itemMove(fromPosition, toPosition);
         return true;
