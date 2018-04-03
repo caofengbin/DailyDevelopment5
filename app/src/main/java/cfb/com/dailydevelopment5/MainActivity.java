@@ -16,6 +16,7 @@ import cfb.com.dailydevelopment5.example5.drawtext.DrawTextActivity;
 import cfb.com.dailydevelopment5.example6.mvp.LoginActivity;
 import cfb.com.dailydevelopment5.example7.layout.LayoutParamActivity;
 import cfb.com.dailydevelopment5.example8.drag.DragListViewActivity;
+import cfb.com.dailydevelopment5.example9.okhttp.UseOkHttpActivity;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
@@ -73,6 +74,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 startIntent(DragListViewActivity.class);
                 break;
             case 8:
+                // OkHttp网络框架的基本使用方式
+                startIntent(UseOkHttpActivity.class);
                 break;
             case 9:
                 break;

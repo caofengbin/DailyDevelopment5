@@ -18,7 +18,6 @@ import android.widget.TextView;
 import java.util.Collections;
 import java.util.List;
 
-import cfb.com.dailydevelopment5.MainActivity;
 import cfb.com.dailydevelopment5.R;
 
 /**
