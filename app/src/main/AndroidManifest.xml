@@ -2,6 +2,9 @@
 <manifest package="cfb.com.dailydevelopment5"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -63,11 +66,8 @@
             android:exported="false"
             android:screenOrientation="portrait">
         </activity>
-
+        <activity android:name=".example10.marquee.MarqueeViewActivity">
+        </activity>
     </application>
-
-
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
 </manifest>

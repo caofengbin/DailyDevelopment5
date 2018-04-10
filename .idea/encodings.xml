@@ -5,12 +5,32 @@
     <file url="file://$PROJECT_DIR$/app/src/main/java/cfb/com/dailydevelopment5/example8/drag/ChannelBean.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/cfb/com/dailydevelopment5/example8/drag/GridSpacingItemDecoration.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/cfb/com/dailydevelopment5/example8/drag/ItemDragCallback.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/anim/anim_bottom_in.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/anim/anim_bottom_out.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/anim/anim_left_in.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/anim/anim_left_out.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/anim/anim_right_in.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/anim/anim_right_out.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/anim/anim_top_in.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/anim/anim_top_out.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/drawable_list_item_selector.xml" charset="GBK" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_background.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_loudspeaker.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_red_loudspeaker.png" charset="GBK" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/icon_close.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/xml_oval_half_transparent_bg.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_about.xml" charset="GBK" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/layout/adapter_channel.xml" charset="GBK" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/layout/adapter_more_channel.xml" charset="GBK" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/layout/adapter_tab.xml" charset="GBK" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/layout/adapter_title.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/divider_1px.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/divider_20dp.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_tab.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/item_layout.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/layout_recyclerview.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_loudspeaker.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_red_loudspeaker.png" charset="GBK" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>
