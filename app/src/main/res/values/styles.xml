@@ -25,4 +25,7 @@
         <attr name="vertex_text_offset" format="dimension"/>
     </declare-styleable>
 
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+
 </resources>
