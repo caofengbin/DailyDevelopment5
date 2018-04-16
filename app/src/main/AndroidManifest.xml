@@ -24,41 +24,42 @@
         <activity
             android:name=".example1.radar.RadarViewActivity"
             android:exported="false"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".example2.touch.TouchActivity"
             android:exported="false"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".example3.fragment.UseListFragmentActivity"
             android:exported="false"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".example4.dialog.DialogFragmentActivity"
             android:exported="false"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".example5.drawtext.DrawTextActivity"
             android:exported="false"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".example7.layout.LayoutParamActivity"
             android:exported="false"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".example6.mvp.LoginActivity"
             android:exported="false"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".example8.drag.DragListViewActivity"
             android:exported="false"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".example9.okhttp.UseOkHttpActivity"
             android:exported="false"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".example10.marquee.MarqueeViewActivity"></activity>
-        <activity android:name=".example11.zhihu.ZhiHuActivity"></activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".example10.marquee.MarqueeViewActivity" />
+        <activity android:name=".example11.zhihu.ZhiHuActivity" />
+        <activity android:name=".example12.picasso.PicassoActivity"></activity>
     </application>
 
 </manifest>
