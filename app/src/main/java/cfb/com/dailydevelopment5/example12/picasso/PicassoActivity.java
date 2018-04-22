@@ -16,8 +16,10 @@ public class PicassoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_picasso);
 
         ImageView mImageView = (ImageView) findViewById(R.id.main_image);
+        // 最简单的使用方式
+        String imageUrl = "http://7xi8d6.com1.z0.glb.clouddn.com/20180122090204_A4hNiG_Screenshot.jpeg";
         Picasso.with(this)
-                .load("http://7xi8d6.com1.z0.glb.clouddn.com/20180122090204_A4hNiG_Screenshot.jpeg")
+                .load(imageUrl)
                 .into(mImageView);
     }
 }

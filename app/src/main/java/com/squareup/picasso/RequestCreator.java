@@ -637,18 +637,23 @@ public class RequestCreator {
             throw new IllegalArgumentException("Target must not be null.");
         }
 
+        // 检测data是否制定了uri或者resourceId
         if (!data.hasImage()) {
             picasso.cancelRequest(target);
+            // 设置显示默认的图片
             if (setPlaceholder) {
                 setPlaceholder(target, getPlaceholderDrawable());
             }
             return;
         }
 
+        // 是否需要延期执行
         if (deferred) {
             if (data.hasSize()) {
                 throw new IllegalStateException("Fit cannot be used with resize.");
             }
+
+            // 重新测量宽高
             int width = target.getWidth();
             int height = target.getHeight();
             if (width == 0 || height == 0) {
@@ -664,9 +669,12 @@ public class RequestCreator {
         Request request = createRequest(started);
         String requestKey = createKey(request);
 
+        // 尝试从MemoryCache中获取图片的过程
         if (shouldReadFromMemoryCache(memoryPolicy)) {
+            // 需要从内存缓存中读取数据
             Bitmap bitmap = picasso.quickMemoryCacheCheck(requestKey);
             if (bitmap != null) {
+                // 已经从缓存中读取到了图片
                 picasso.cancelRequest(target);
                 setBitmap(target, picasso.context, bitmap, MEMORY, noFade, picasso.indicatorsEnabled);
                 if (picasso.loggingEnabled) {
@@ -680,9 +688,11 @@ public class RequestCreator {
         }
 
         if (setPlaceholder) {
+            // 显示默认的占位图
             setPlaceholder(target, getPlaceholderDrawable());
         }
 
+        // 生成一个网络下载图片请求的Action
         Action action =
                 new ImageViewAction(picasso, target, request, memoryPolicy, networkPolicy, errorResId,
                         errorDrawable, requestKey, tag, callback, noFade);
@@ -700,6 +710,7 @@ public class RequestCreator {
 
     /**
      * Create the request optionally passing it through the request transformer.
+     * 创建一个下载图片的请求
      */
     private Request createRequest(long started) {
         int id = nextId.getAndIncrement();

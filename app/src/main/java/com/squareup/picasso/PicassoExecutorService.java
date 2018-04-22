@@ -89,6 +89,9 @@ class PicassoExecutorService extends ThreadPoolExecutor {
     return ftask;
   }
 
+    /**
+     * 单个下载线程的任务
+     */
   private static final class PicassoFutureTask extends FutureTask<BitmapHunter>
       implements Comparable<PicassoFutureTask> {
     private final BitmapHunter hunter;

@@ -61,6 +61,7 @@ import static com.squareup.picasso.Utils.log;
 public class Picasso {
 
     /**
+     * Picasso中定义的接口1：在图片加载失败的时候进行调用
      * Callbacks for Picasso events.
      */
     public interface Listener {
@@ -72,6 +73,7 @@ public class Picasso {
     }
 
     /**
+     * 只要是Request的相关信息，可以通过这个接口进行修改。
      * A transformer that is called immediately before every request is submitted. This can be used to
      * modify any information about a request.
      * <p>
@@ -90,6 +92,7 @@ public class Picasso {
         Request transformRequest(Request request);
 
         /**
+         * 一个默认的实现，直接返回未被修改的Request
          * A {@link RequestTransformer} which returns the original request.
          */
         RequestTransformer IDENTITY = new RequestTransformer() {
@@ -101,6 +104,7 @@ public class Picasso {
     }
 
     /**
+     * Picasso中定义的三个优先级
      * The priority of a request.
      *
      * @see RequestCreator#priority(Priority)
@@ -151,8 +155,8 @@ public class Picasso {
 
     private final Listener listener;
     private final RequestTransformer requestTransformer;
-    private final CleanupThread cleanupThread;
-    private final List<RequestHandler> requestHandlers;
+    private final CleanupThread cleanupThread;                          // 清理线程
+    private final List<RequestHandler> requestHandlers;                 // 请求处理的ReqeustHandler集合，
 
     final Context context;
     final Dispatcher dispatcher;
@@ -494,6 +498,11 @@ public class Picasso {
         targetToDeferredRequestCreator.put(view, request);
     }
 
+    /**
+     * 将action添加到队列，并提交
+     *
+     * @param action
+     */
     void enqueueAndSubmit(Action action) {
         Object target = action.getTarget();
         if (target != null && targetToAction.get(target) != action) {
@@ -597,11 +606,14 @@ public class Picasso {
 
     private void cancelExistingRequest(Object target) {
         checkMain();
+        // 取消一个下载图片的请求过程
+        // 分为三个步骤
         Action action = targetToAction.remove(target);
         if (action != null) {
             action.cancel();
             dispatcher.dispatchCancel(action);
         }
+
         if (target instanceof ImageView) {
             ImageView targetImageView = (ImageView) target;
             DeferredRequestCreator deferredRequestCreator =
@@ -668,7 +680,8 @@ public class Picasso {
     }
 
     /**
-     * 核心方法:获取唯一的全局Picasso单例对象
+     * 核心方法:获取唯一的全局Picasso单例对象.
+     * 是Picasso的初始化代码。
      * The global default {@link Picasso} instance.
      * <p>
      * This instance is automatically initialized with defaults that are suitable to most
@@ -712,6 +725,7 @@ public class Picasso {
     }
 
     /**
+     * Picasso对象的Builder模式构造这
      * Fluent API for creating {@link Picasso} instances.
      */
     @SuppressWarnings("UnusedDeclaration") // Public API.
@@ -871,26 +885,36 @@ public class Picasso {
         }
 
         /**
+         * 默认的builder方法，创建Picasso实例
          * Create the {@link Picasso} instance.
          */
         public Picasso build() {
             Context context = this.context;
 
+            // 创建的对象1：下载用的工具类
             if (downloader == null) {
                 downloader = Utils.createDefaultDownloader(context);
             }
+
+            // 创建的对象2：缓存用的Cache
             if (cache == null) {
                 cache = new LruCache(context);
             }
+
+            // 创建的对象3：线程池对象
             if (service == null) {
                 service = new PicassoExecutorService();
             }
+
+            // 创建的对象4：对请求进行预处理
             if (transformer == null) {
                 transformer = RequestTransformer.IDENTITY;
             }
 
+            // 创建的对象5：统计信息类--Stats
             Stats stats = new Stats(cache);
 
+            // 创建的对象6：图片下载调度器Dispatcher
             Dispatcher dispatcher = new Dispatcher(context, service, HANDLER, downloader, cache, stats);
 
             return new Picasso(context, dispatcher, cache, listener, transformer, requestHandlers, stats,
@@ -900,6 +924,7 @@ public class Picasso {
 
     /**
      * Describes where the image was loaded from.
+     * 用来标记图片的记载来源
      */
     public enum LoadedFrom {
         MEMORY(Color.GREEN),
