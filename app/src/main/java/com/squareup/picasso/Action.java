@@ -25,6 +25,7 @@ import static com.squareup.picasso.Picasso.Priority;
 
 /**
  * 对Request的一个包装类
+ *
  * @param <T>
  */
 abstract class Action<T> {

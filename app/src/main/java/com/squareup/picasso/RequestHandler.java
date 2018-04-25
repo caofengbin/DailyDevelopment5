@@ -18,6 +18,7 @@ package com.squareup.picasso;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.NetworkInfo;
+
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -41,136 +42,140 @@ import static com.squareup.picasso.Utils.checkNotNull;
  * @see Picasso.Builder#addRequestHandler(RequestHandler)
  */
 public abstract class RequestHandler {
-  /**
-   * {@link Result} represents the result of a {@link #load(Request, int)} call in a
-   * {@link RequestHandler}.
-   *
-   * @see RequestHandler
-   * @see #load(Request, int)
-   */
-  public static final class Result {
-    private final Picasso.LoadedFrom loadedFrom;
-    private final Bitmap bitmap;
-    private final InputStream stream;
-    private final int exifOrientation;
+    /**
+     * {@link Result} represents the result of a {@link #load(Request, int)} call in a
+     * {@link RequestHandler}.
+     *
+     * @see RequestHandler
+     * @see #load(Request, int)
+     */
+    public static final class Result {
+        private final Picasso.LoadedFrom loadedFrom;
+        private final Bitmap bitmap;
+        private final InputStream stream;
+        private final int exifOrientation;
 
-    public Result(Bitmap bitmap, Picasso.LoadedFrom loadedFrom) {
-      this(checkNotNull(bitmap, "bitmap == null"), null, loadedFrom, 0);
-    }
+        public Result(Bitmap bitmap, Picasso.LoadedFrom loadedFrom) {
+            this(checkNotNull(bitmap, "bitmap == null"), null, loadedFrom, 0);
+        }
 
-    public Result(InputStream stream, Picasso.LoadedFrom loadedFrom) {
-      this(null, checkNotNull(stream, "stream == null"), loadedFrom, 0);
-    }
+        public Result(InputStream stream, Picasso.LoadedFrom loadedFrom) {
+            this(null, checkNotNull(stream, "stream == null"), loadedFrom, 0);
+        }
 
-    Result(Bitmap bitmap, InputStream stream, Picasso.LoadedFrom loadedFrom, int exifOrientation) {
-      if (!(bitmap != null ^ stream != null)) {
-        throw new AssertionError();
-      }
-      this.bitmap = bitmap;
-      this.stream = stream;
-      this.loadedFrom = checkNotNull(loadedFrom, "loadedFrom == null");
-      this.exifOrientation = exifOrientation;
-    }
+        Result(Bitmap bitmap, InputStream stream, Picasso.LoadedFrom loadedFrom, int exifOrientation) {
+            if (!(bitmap != null ^ stream != null)) {
+                throw new AssertionError();
+            }
+            this.bitmap = bitmap;
+            this.stream = stream;
+            this.loadedFrom = checkNotNull(loadedFrom, "loadedFrom == null");
+            this.exifOrientation = exifOrientation;
+        }
 
-    /** The loaded {@link Bitmap}. Mutually exclusive with {@link #getStream()}. */
-    public Bitmap getBitmap() {
-      return bitmap;
-    }
+        /**
+         * The loaded {@link Bitmap}. Mutually exclusive with {@link #getStream()}.
+         */
+        public Bitmap getBitmap() {
+            return bitmap;
+        }
 
-    /** A stream of image data. Mutually exclusive with {@link #getBitmap()}. */
-    public InputStream getStream() {
-      return stream;
+        /**
+         * A stream of image data. Mutually exclusive with {@link #getBitmap()}.
+         */
+        public InputStream getStream() {
+            return stream;
+        }
+
+        /**
+         * Returns the resulting {@link Picasso.LoadedFrom} generated from a
+         * {@link #load(Request, int)} call.
+         */
+        public Picasso.LoadedFrom getLoadedFrom() {
+            return loadedFrom;
+        }
+
+        /**
+         * Returns the resulting EXIF orientation generated from a {@link #load(Request, int)} call.
+         * This is only accessible to built-in RequestHandlers.
+         */
+        int getExifOrientation() {
+            return exifOrientation;
+        }
     }
 
     /**
-     * Returns the resulting {@link Picasso.LoadedFrom} generated from a
-     * {@link #load(Request, int)} call.
+     * Whether or not this {@link RequestHandler} can handle a request with the given {@link Request}.
      */
-    public Picasso.LoadedFrom getLoadedFrom() {
-      return loadedFrom;
+    public abstract boolean canHandleRequest(Request data);
+
+    /**
+     * Loads an image for the given {@link Request}.
+     *
+     * @param request       the data from which the image should be resolved.
+     * @param networkPolicy the {@link NetworkPolicy} for this request.
+     */
+    public abstract Result load(Request request, int networkPolicy) throws IOException;
+
+    int getRetryCount() {
+        return 0;
+    }
+
+    boolean shouldRetry(boolean airplaneMode, NetworkInfo info) {
+        return false;
+    }
+
+    boolean supportsReplay() {
+        return false;
     }
 
     /**
-     * Returns the resulting EXIF orientation generated from a {@link #load(Request, int)} call.
-     * This is only accessible to built-in RequestHandlers.
+     * Lazily create {@link BitmapFactory.Options} based in given
+     * {@link Request}, only instantiating them if needed.
      */
-    int getExifOrientation() {
-      return exifOrientation;
+    static BitmapFactory.Options createBitmapOptions(Request data) {
+        final boolean justBounds = data.hasSize();
+        final boolean hasConfig = data.config != null;
+        BitmapFactory.Options options = null;
+        if (justBounds || hasConfig) {
+            options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = justBounds;
+            if (hasConfig) {
+                options.inPreferredConfig = data.config;
+            }
+        }
+        return options;
     }
-  }
 
-  /**
-   * Whether or not this {@link RequestHandler} can handle a request with the given {@link Request}.
-   */
-  public abstract boolean canHandleRequest(Request data);
-
-  /**
-   * Loads an image for the given {@link Request}.
-   *
-   * @param request the data from which the image should be resolved.
-   * @param networkPolicy the {@link NetworkPolicy} for this request.
-   */
-  public abstract Result load(Request request, int networkPolicy) throws IOException;
-
-  int getRetryCount() {
-    return 0;
-  }
-
-  boolean shouldRetry(boolean airplaneMode, NetworkInfo info) {
-    return false;
-  }
-
-  boolean supportsReplay() {
-    return false;
-  }
-
-  /**
-   * Lazily create {@link BitmapFactory.Options} based in given
-   * {@link Request}, only instantiating them if needed.
-   */
-  static BitmapFactory.Options createBitmapOptions(Request data) {
-    final boolean justBounds = data.hasSize();
-    final boolean hasConfig = data.config != null;
-    BitmapFactory.Options options = null;
-    if (justBounds || hasConfig) {
-      options = new BitmapFactory.Options();
-      options.inJustDecodeBounds = justBounds;
-      if (hasConfig) {
-        options.inPreferredConfig = data.config;
-      }
+    static boolean requiresInSampleSize(BitmapFactory.Options options) {
+        return options != null && options.inJustDecodeBounds;
     }
-    return options;
-  }
 
-  static boolean requiresInSampleSize(BitmapFactory.Options options) {
-    return options != null && options.inJustDecodeBounds;
-  }
-
-  static void calculateInSampleSize(int reqWidth, int reqHeight, BitmapFactory.Options options,
-      Request request) {
-    calculateInSampleSize(reqWidth, reqHeight, options.outWidth, options.outHeight, options,
-        request);
-  }
-
-  static void calculateInSampleSize(int reqWidth, int reqHeight, int width, int height,
-      BitmapFactory.Options options, Request request) {
-    int sampleSize = 1;
-    if (height > reqHeight || width > reqWidth) {
-      final int heightRatio;
-      final int widthRatio;
-      if (reqHeight == 0) {
-        sampleSize = (int) Math.floor((float) width / (float) reqWidth);
-      } else if (reqWidth == 0) {
-        sampleSize = (int) Math.floor((float) height / (float) reqHeight);
-      } else {
-        heightRatio = (int) Math.floor((float) height / (float) reqHeight);
-        widthRatio = (int) Math.floor((float) width / (float) reqWidth);
-        sampleSize = request.centerInside
-            ? Math.max(heightRatio, widthRatio)
-            : Math.min(heightRatio, widthRatio);
-      }
+    static void calculateInSampleSize(int reqWidth, int reqHeight, BitmapFactory.Options options,
+                                      Request request) {
+        calculateInSampleSize(reqWidth, reqHeight, options.outWidth, options.outHeight, options,
+                request);
     }
-    options.inSampleSize = sampleSize;
-    options.inJustDecodeBounds = false;
-  }
+
+    static void calculateInSampleSize(int reqWidth, int reqHeight, int width, int height,
+                                      BitmapFactory.Options options, Request request) {
+        int sampleSize = 1;
+        if (height > reqHeight || width > reqWidth) {
+            final int heightRatio;
+            final int widthRatio;
+            if (reqHeight == 0) {
+                sampleSize = (int) Math.floor((float) width / (float) reqWidth);
+            } else if (reqWidth == 0) {
+                sampleSize = (int) Math.floor((float) height / (float) reqHeight);
+            } else {
+                heightRatio = (int) Math.floor((float) height / (float) reqHeight);
+                widthRatio = (int) Math.floor((float) width / (float) reqWidth);
+                sampleSize = request.centerInside
+                        ? Math.max(heightRatio, widthRatio)
+                        : Math.min(heightRatio, widthRatio);
+            }
+        }
+        options.inSampleSize = sampleSize;
+        options.inJustDecodeBounds = false;
+    }
 }

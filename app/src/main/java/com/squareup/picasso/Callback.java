@@ -15,17 +15,22 @@
  */
 package com.squareup.picasso;
 
+/**
+ * 暴露给具体业务层的接口，通知相应的图片加载是否成功或失败，调用into方法时选择是否传入
+ */
 public interface Callback {
-  void onSuccess();
+    void onSuccess();
 
-  void onError();
+    void onError();
 
-  public static class EmptyCallback implements Callback {
+    public static class EmptyCallback implements Callback {
 
-    @Override public void onSuccess() {
+        @Override
+        public void onSuccess() {
+        }
+
+        @Override
+        public void onError() {
+        }
     }
-
-    @Override public void onError() {
-    }
-  }
 }

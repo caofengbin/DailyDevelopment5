@@ -621,6 +621,7 @@ public class RequestCreator {
     }
 
     /**
+     * 非常核心的方法！
      * Asynchronously fulfills the request into the specified {@link ImageView} and invokes the
      * target {@link Callback} if it's not {@code null}.
      * <p>
@@ -637,10 +638,10 @@ public class RequestCreator {
             throw new IllegalArgumentException("Target must not be null.");
         }
 
-        // 检测data是否制定了uri或者resourceId
+        // 检测data是否指定了uri或者resourceId
         if (!data.hasImage()) {
             picasso.cancelRequest(target);
-            // 设置显示默认的图片
+            // 设置显示默认的占位图
             if (setPlaceholder) {
                 setPlaceholder(target, getPlaceholderDrawable());
             }

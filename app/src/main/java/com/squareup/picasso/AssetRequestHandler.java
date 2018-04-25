@@ -18,6 +18,7 @@ package com.squareup.picasso;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.net.Uri;
+
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -25,28 +26,30 @@ import static android.content.ContentResolver.SCHEME_FILE;
 import static com.squareup.picasso.Picasso.LoadedFrom.DISK;
 
 class AssetRequestHandler extends RequestHandler {
-  protected static final String ANDROID_ASSET = "android_asset";
-  private static final int ASSET_PREFIX_LENGTH =
-      (SCHEME_FILE + ":///" + ANDROID_ASSET + "/").length();
+    protected static final String ANDROID_ASSET = "android_asset";
+    private static final int ASSET_PREFIX_LENGTH =
+            (SCHEME_FILE + ":///" + ANDROID_ASSET + "/").length();
 
-  private final AssetManager assetManager;
+    private final AssetManager assetManager;
 
-  public AssetRequestHandler(Context context) {
-    assetManager = context.getAssets();
-  }
+    public AssetRequestHandler(Context context) {
+        assetManager = context.getAssets();
+    }
 
-  @Override public boolean canHandleRequest(Request data) {
-    Uri uri = data.uri;
-    return (SCHEME_FILE.equals(uri.getScheme())
-        && !uri.getPathSegments().isEmpty() && ANDROID_ASSET.equals(uri.getPathSegments().get(0)));
-  }
+    @Override
+    public boolean canHandleRequest(Request data) {
+        Uri uri = data.uri;
+        return (SCHEME_FILE.equals(uri.getScheme())
+                && !uri.getPathSegments().isEmpty() && ANDROID_ASSET.equals(uri.getPathSegments().get(0)));
+    }
 
-  @Override public Result load(Request request, int networkPolicy) throws IOException {
-    InputStream is = assetManager.open(getFilePath(request));
-    return new Result(is, DISK);
-  }
+    @Override
+    public Result load(Request request, int networkPolicy) throws IOException {
+        InputStream is = assetManager.open(getFilePath(request));
+        return new Result(is, DISK);
+    }
 
-  static String getFilePath(Request request) {
-    return request.uri.toString().substring(ASSET_PREFIX_LENGTH);
-  }
+    static String getFilePath(Request request) {
+        return request.uri.toString().substring(ASSET_PREFIX_LENGTH);
+    }
 }

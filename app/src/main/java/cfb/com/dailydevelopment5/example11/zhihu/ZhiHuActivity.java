@@ -33,7 +33,7 @@ public class ZhiHuActivity extends AppCompatActivity {
         mRecyclerView.addItemDecoration(itemDecoration);
 
         mDatas = new ArrayList<>();
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 2; i++) {
             String s = String.format("我是第%d个item", i);
             mDatas.add(s);
         }

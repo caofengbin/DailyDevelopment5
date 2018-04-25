@@ -121,6 +121,7 @@ public class Picasso {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case HUNTER_BATCH_COMPLETE: {
+                    // 当前打包的任务已经完成了
                     @SuppressWarnings("unchecked") List<BitmapHunter> batch = (List<BitmapHunter>) msg.obj;
                     //noinspection ForLoopReplaceableByForEach
                     for (int i = 0, n = batch.size(); i < n; i++) {
@@ -138,6 +139,7 @@ public class Picasso {
                     break;
                 }
                 case REQUEST_BATCH_RESUME:
+                    // 打包的请求重新恢复执行，所以要求在主线程上依次恢复其对应的Action
                     @SuppressWarnings("unchecked") List<Action> batch = (List<Action>) msg.obj;
                     //noinspection ForLoopReplaceableByForEach
                     for (int i = 0, n = batch.size(); i < n; i++) {
@@ -527,6 +529,10 @@ public class Picasso {
         return cached;
     }
 
+    /**
+     * bath任务成功的回调方法操作
+     * @param hunter
+     */
     void complete(BitmapHunter hunter) {
         Action single = hunter.getAction();
         List<Action> joined = hunter.getActions();
@@ -592,6 +598,7 @@ public class Picasso {
             if (from == null) {
                 throw new AssertionError("LoadedFrom cannot be null.");
             }
+            // 非常重要的方法
             action.complete(result, from);
             if (loggingEnabled) {
                 log(OWNER_MAIN, VERB_COMPLETED, action.request.logId(), "from " + from);

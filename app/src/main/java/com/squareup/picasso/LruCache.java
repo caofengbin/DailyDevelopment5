@@ -25,6 +25,7 @@ import java.util.Map;
 import static com.squareup.picasso.Utils.KEY_SEPARATOR;
 
 /**
+ * 内存缓存的具体实现类
  * A memory cache which uses a least-recently used eviction policy.
  */
 public class LruCache implements Cache {

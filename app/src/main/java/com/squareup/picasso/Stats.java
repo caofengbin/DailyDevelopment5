@@ -25,7 +25,7 @@ import static android.os.Process.THREAD_PRIORITY_BACKGROUND;
 
 /**
  * 存储图片下载模块的一些常用的统计信息
- * 如cache hit/miss，总共下载的文件大小，下载过的图片数量，转换的图片数量等等。
+ * 如cache hit/miss，总共下载的文件大小，下载过的图片数量，转换的图片数量等
  */
 class Stats {
     private static final int CACHE_HIT = 0;

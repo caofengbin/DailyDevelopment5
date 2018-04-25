@@ -20,6 +20,9 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
+/**
+ * Action的相关子类中，最常用的一个子类型
+ */
 class ImageViewAction extends Action<ImageView> {
 
     Callback callback;

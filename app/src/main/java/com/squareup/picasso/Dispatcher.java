@@ -374,11 +374,16 @@ class Dispatcher {
     }
 
     void performComplete(BitmapHunter hunter) {
+        // 对缓存策略进行判断
         if (shouldWriteToMemoryCache(hunter.getMemoryPolicy())) {
             cache.set(hunter.getKey(), hunter.getResult());
         }
+
+        // 请求已经完成，移除掉Map中的任务
         hunterMap.remove(hunter.getKey());
+
         batch(hunter);
+
         if (hunter.getPicasso().loggingEnabled) {
             log(OWNER_DISPATCHER, VERB_BATCHED, getLogIdsForHunter(hunter), "for completion");
         }
@@ -507,6 +512,7 @@ class Dispatcher {
                     break;
                 }
                 case HUNTER_COMPLETE: {
+                    // hunter()成功请求到图片的分支
                     BitmapHunter hunter = (BitmapHunter) msg.obj;
                     dispatcher.performComplete(hunter);
                     break;
