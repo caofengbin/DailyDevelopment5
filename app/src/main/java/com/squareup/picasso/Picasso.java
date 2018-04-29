@@ -531,6 +531,7 @@ public class Picasso {
 
     /**
      * bath任务成功的回调方法操作
+     *
      * @param hunter
      */
     void complete(BitmapHunter hunter) {
@@ -934,9 +935,9 @@ public class Picasso {
      * 用来标记图片的记载来源
      */
     public enum LoadedFrom {
-        MEMORY(Color.GREEN),
-        DISK(Color.BLUE),
-        NETWORK(Color.RED);
+        MEMORY(Color.GREEN),                        // 内存缓存为绿色
+        DISK(Color.BLUE),                           // 磁盘缓存为蓝色
+        NETWORK(Color.RED);                         // 读取网络为红色
 
         final int debugColor;
 
