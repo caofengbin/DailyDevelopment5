@@ -59,7 +59,8 @@
             android:screenOrientation="portrait" />
         <activity android:name=".example10.marquee.MarqueeViewActivity" />
         <activity android:name=".example11.zhihu.ZhiHuActivity" />
-        <activity android:name=".example12.picasso.PicassoActivity"></activity>
+        <activity android:name=".example12.picasso.PicassoActivity" />
+        <activity android:name=".example13.ring.RingChartActivity"></activity>
     </application>
 
 </manifest>

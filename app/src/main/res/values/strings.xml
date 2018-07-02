@@ -13,7 +13,8 @@
         <item>(9) OkHttp的使用</item>
         <item>(10) 跑马灯效果</item>
         <item>(11) 仿知乎首页</item>
-        <item>(12) </item>
+        <item>(12) Picasso基本使用</item>
+        <item>(13) 环状图</item>
     </string-array>
 
     <string-array name="ok_http_use_string_array">

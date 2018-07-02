@@ -12,6 +12,7 @@ import cfb.com.dailydevelopment5.example1.radar.RadarViewActivity;
 import cfb.com.dailydevelopment5.example10.marquee.MarqueeViewActivity;
 import cfb.com.dailydevelopment5.example11.zhihu.ZhiHuActivity;
 import cfb.com.dailydevelopment5.example12.picasso.PicassoActivity;
+import cfb.com.dailydevelopment5.example13.ring.RingChartActivity;
 import cfb.com.dailydevelopment5.example2.touch.TouchActivity;
 import cfb.com.dailydevelopment5.example3.fragment.UseListFragmentActivity;
 import cfb.com.dailydevelopment5.example4.dialog.DialogFragmentActivity;
@@ -89,6 +90,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 break;
             case 11:
                 startIntent(PicassoActivity.class);
+                break;
+            case 12:
+                startIntent(RingChartActivity.class);
                 break;
         }
     }
