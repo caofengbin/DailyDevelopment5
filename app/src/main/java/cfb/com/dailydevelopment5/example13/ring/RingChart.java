@@ -56,7 +56,7 @@ public class RingChart extends View {
 
     private static final float BORDER_WIDTH = 4;
     private static final float DIRECTION_LINE_WIDTH = 5;
-    private static final float DIRECTION_LINE_OUTTER_LENGTH = 90;
+    private static final float DIRECTION_LINE_OUTTER_LENGTH = 0;
 
     private static final int LABEL_ALIGNMENT_LEFT = 0;
     private static final int LABEL_ALIGNMENT_RIGHT = 1;
@@ -299,15 +299,15 @@ public class RingChart extends View {
             float startY = sin * radius + ringBound.centerY();
             float startX = cos * radius + ringBound.centerX();
 
+            // step 1 : 绘制圆半径上的延长线，固定的长度
             PointF startP = new PointF(startX, startY);
-            PointF endP = findConnectLineTurnPoint(sin, cos, startP,item);
+            PointF endP = findConnectLineTurnPoint(sin, cos, startP, item);
             canvas.drawLine(startP.x, startP.y, endP.x, endP.y, directLinePaint);
 
+            // step 2 : 绘制水平方向上的横线，
             PointF outerLineEndP = findHorizonDirectLineEndP(endP, item);
+
             int txtAlignment = outerLineEndP.x < ringBound.centerX() ? LABEL_ALIGNMENT_LEFT : LABEL_ALIGNMENT_RIGHT;
-
-
-
 
 
             float outerStartx = (txtAlignment == LABEL_ALIGNMENT_LEFT) ? endP.x + 1 : endP.x - 1;
@@ -319,7 +319,8 @@ public class RingChart extends View {
 
         private PointF findLabelTextStartP(PointF lineEndP, int labelAlignment) {
             float tWidth = item.labelWidth;
-            float txtOff = (labelAlignment == LABEL_ALIGNMENT_LEFT) ? -(LABEL_LINE_MARGIN + tWidth) : LABEL_LINE_MARGIN;
+            float txtOff = (labelAlignment == LABEL_ALIGNMENT_LEFT) ?
+                    -(LABEL_LINE_MARGIN + tWidth) : LABEL_LINE_MARGIN;
             PointF startP = new PointF();
             startP.x = lineEndP.x + txtOff;
             startP.y = lineEndP.y + labelTextSize / 2;
@@ -340,20 +341,28 @@ public class RingChart extends View {
             }
 
             // 这里是增加的判断条件
-            if (item.index==4 && item.percent <= 0.125) {
+            if (item.index == 4 && item.percent <= 0.125) {
                 endP.x = ringBound.right + DIRECTION_LINE_OUTTER_LENGTH;
             }
             return endP;
         }
 
-        private PointF findConnectLineTurnPoint(float sin, float cos, PointF startP,DataItem item) {
+        /**
+         * 这里用来拉去圆半径上的延长线
+         * @param sin
+         * @param cos
+         * @param startP
+         * @param item
+         * @return
+         */
+        private PointF findConnectLineTurnPoint(float sin, float cos, PointF startP, DataItem item) {
             PointF p = new PointF();
             p.set(startP.x + cos * EXTENT_LINE_LENGTH, startP.y + sin * EXTENT_LINE_LENGTH);
 
-            if(item.index == 2 && item.percent <= 0.125) {
-                p.set(startP.x + cos * EXTENT_LINE_LENGTH / 2, startP.y + sin * EXTENT_LINE_LENGTH / 2);
-
-            }
+//            if (item.index == 2 && item.percent <= 0.125) {
+//                p.set(startP.x + cos * EXTENT_LINE_LENGTH / 2, startP.y + sin * EXTENT_LINE_LENGTH / 2);
+//
+//            }
             return p;
         }
     }
