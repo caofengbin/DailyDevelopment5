@@ -7,7 +7,7 @@
     <dimen name="ring_chart_title_size">33sp</dimen>
     <dimen name="ring_chart_subtitle_size">20sp</dimen>
 
-    <dimen name="ring_chart_label_text_size">17sp</dimen>
+    <dimen name="ring_chart_label_text_size">14sp</dimen>
 
 
 </resources>

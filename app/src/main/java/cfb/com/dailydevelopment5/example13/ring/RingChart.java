@@ -49,7 +49,7 @@ public class RingChart extends View {
     private float totalValue;
     private ItemDrawerHelper itemDrawerHelper;
 
-    private static final float CHART_MARGIN = 120;
+    private static final float CHART_MARGIN = 160;
     private static final float MARGIN_BETWEEN_TITLES = 90;
     private static final float RING_WIDTH = 90;
     private static final float EXTENT_LINE_LENGTH = RING_WIDTH;
@@ -286,8 +286,10 @@ public class RingChart extends View {
         public void drawArc() {
             arcPaint.setColor(item.color);
 //            arcPaint.setStrokeWidth(RING_WIDTH-2);
-            canvas.drawArc(ringBound, item.startDegree, item.sweepDegree, false, arcPaint);
-
+            canvas.drawArc(ringBound, item.startDegree, item.sweepDegree - 1, false, arcPaint);
+            arcPaint.setColor(getResources().getColor(android.R.color.holo_purple));
+            canvas.drawArc(ringBound, item.startDegree + item.sweepDegree - 1,
+                    1, false, arcPaint);
         }
 
         public void doDraw() {
