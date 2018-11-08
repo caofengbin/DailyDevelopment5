@@ -1,4 +1,7 @@
 ÎÒµÄÄÚÈİ
 this is test file 
 add
+<<<<<<< HEAD
 this is test file 
+=======
+>>>>>>> 5902391... æ·»åŠ ä¸€æ¬¡ä¿®æ”¹
