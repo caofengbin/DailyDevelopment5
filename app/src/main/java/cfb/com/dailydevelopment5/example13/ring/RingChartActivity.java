@@ -22,6 +22,5 @@ public class RingChartActivity extends AppCompatActivity {
         chart.addItem("这个是0", 0f, getResources().getColor(android.R.color.holo_orange_dark));
         
 
-
     }
 }
