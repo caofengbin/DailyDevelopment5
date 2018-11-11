@@ -20,6 +20,10 @@ public class RingChartActivity extends AppCompatActivity {
         chart.addItem("这是比较长的文字这是比较长的文字2",34f, getResources().getColor(android.R.color.holo_green_light));
         chart.addItem("这是比较长的文字这是比较长的文字3", 12f, getResources().getColor(android.R.color.holo_blue_light));
         chart.addItem("这个是0", 0f, getResources().getColor(android.R.color.holo_orange_dark));
+
+
+
+
         
     }
 }
