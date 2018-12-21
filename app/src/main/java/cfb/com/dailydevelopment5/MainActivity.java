@@ -22,6 +22,9 @@ import cfb.com.dailydevelopment5.example7.layout.LayoutParamActivity;
 import cfb.com.dailydevelopment5.example8.drag.DragListViewActivity;
 import cfb.com.dailydevelopment5.example9.okhttp.UseOkHttpActivity;
 
+/**
+ * 测试应用的主Activity，用于测试各个入口demo功能的跳转情况
+ */
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private String[] mainItems;
