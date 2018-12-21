@@ -15,6 +15,7 @@
         <item>(11) 仿知乎首页</item>
         <item>(12) Picasso基本使用</item>
         <item>(13) 环状图</item>
+        <item>(14) MVVM的基本使用</item>
     </string-array>
 
     <string-array name="ok_http_use_string_array">
