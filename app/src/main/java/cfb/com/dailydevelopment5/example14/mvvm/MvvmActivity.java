@@ -7,9 +7,6 @@ import cfb.com.dailydevelopment5.R;
 
 public class MvvmActivity extends AppCompatActivity {
 
-    private User user;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
