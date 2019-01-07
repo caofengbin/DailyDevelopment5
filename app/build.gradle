@@ -20,14 +20,34 @@ android {
     dataBinding {
         enabled = true
     }
+
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src', '.apt_generated']
+            resources.srcDirs = ['src', '.apt_generated']
+            aidl.srcDirs = ['src', '.apt_generated']
+            renderscript.srcDirs = ['src', '.apt_generated']
+            res.srcDirs = [
+                    'res',
+                    'res/values_color/group_market',
+                    'res/values_color/news_trade_find'
+            ]
+            assets.srcDirs = ['assets']
+            jniLibs.srcDirs = ['libs']
+        }
+
+        // Move the tests to tests/java, tests/res, etc...
+        instrumentTest.setRoot('tests')
+
+        debug.setRoot('build-types/debug')
+        release.setRoot('build-types/release')
+    }
+
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
